@@ -4,8 +4,8 @@ import utils.RandomUtils;
 
 public class Car {
     private static final int RANDOM_MIN_VAL = 0;
-    private static final int RANDOM_MAX_VAL = 99;
-    private static final int RANDOM_MOVE_PERCENTAGE = 70;
+    private static final int RANDOM_MAX_VAL = 9;
+    private static final int RANDOM_MOVE_PERCENTAGE = 3;
 
     private final String name;
     private int position = 0;
@@ -40,10 +40,8 @@ public class Car {
     }
 
     private boolean moveDecision() {
-        if (RANDOM_MOVE_PERCENTAGE > RandomUtils.nextInt(RANDOM_MIN_VAL, RANDOM_MAX_VAL))
+        if (RANDOM_MOVE_PERCENTAGE < RandomUtils.nextInt(RANDOM_MIN_VAL, RANDOM_MAX_VAL))
             return true;
         return false;
     }
-
-
 }

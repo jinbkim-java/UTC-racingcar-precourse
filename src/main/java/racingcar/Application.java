@@ -1,14 +1,14 @@
 package racingcar;
 
-import view.InputView;
+import view.View;
 
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        InputView inputView = new InputView(scanner);
-        PlayGame racingCarGame = new PlayGame(inputView);
+        View view = new View(scanner);
+        PlayGame racingCarGame = new PlayGame(view);
 
         racingCarGame.playGame();
     }

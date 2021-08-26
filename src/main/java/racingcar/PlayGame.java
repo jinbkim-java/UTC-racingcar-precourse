@@ -1,37 +1,37 @@
 package racingcar;
 
-import view.InputView;
-import view.OutputView;
+import view.View;
 
 public class PlayGame {
-    private final InputView inputView;
+    private final View view;
+    private int gameRound;
     private RacingCars racingCars;
-    private GameRound gameRound;
 
-    public PlayGame(InputView inputView) {
-        this.inputView = inputView;
+    public PlayGame(View view) {
+        this.view = view;
     }
 
     public void playGame() {
         setCarNames();
         setGameRound();
         racing();
-        System.out.println(OutputView.FINAL_WINNER + racingCars.getWinners());
+        System.out.println(view.FINAL_WINNER + racingCars.getWinners());
     }
 
     private void setCarNames() {
-        System.out.println(inputView.ASK_CAR_NAMES);
-        racingCars = new RacingCars(inputView.getUserInput());
+        System.out.println(view.ASK_CAR_NAMES);
+        racingCars = new RacingCars(view.getUserInput());
     }
 
     private void setGameRound() {
-        System.out.println(inputView.ASK_GAME_ROUND);
-        gameRound = new GameRound(inputView.getUserInput());
+        System.out.println(view.ASK_GAME_ROUND);
+        String gameRound = view.getUserInput();
+        this.gameRound = Integer.parseInt(gameRound);
     }
 
     private void racing() {
-        System.out.println(OutputView.RACE_RESULT);
-        for (int i = 0; i < gameRound.getRound(); i++)
+        System.out.println(view.RACE_RESULT);
+        for (int i = 0; i < gameRound; i++)
             racingCars.racing();
     }
 }
