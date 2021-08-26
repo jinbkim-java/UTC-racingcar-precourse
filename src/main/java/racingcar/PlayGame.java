@@ -1,5 +1,6 @@
 package racingcar;
 
+import utils.Validate;
 import view.View;
 
 public class PlayGame {
@@ -19,14 +20,31 @@ public class PlayGame {
     }
 
     private void setCarNames() {
-        System.out.println(view.ASK_CAR_NAMES);
-        racingCars = new RacingCars(view.getUserInput());
+        try {
+            System.out.println(view.ASK_CAR_NAMES);
+            racingCars = new RacingCars(view.getUserInput());
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            setCarNames();
+        }
     }
 
     private void setGameRound() {
-        System.out.println(view.ASK_GAME_ROUND);
-        String gameRound = view.getUserInput();
-        this.gameRound = Integer.parseInt(gameRound);
+        try {
+            System.out.println(view.ASK_GAME_ROUND);
+            String gameRound = view.getUserInput();
+            validate(gameRound);
+            this.gameRound = Integer.parseInt(gameRound);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            setGameRound();
+        }
+    }
+
+    private void validate(String gameRound){
+        Validate.validateNumber(gameRound);
+        if (Integer.parseInt(gameRound) < 1)
+            throw new IllegalArgumentException(View.ONLY_NUMBER);
     }
 
     private void racing() {
