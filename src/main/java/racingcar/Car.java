@@ -32,6 +32,12 @@ public class Car {
         return name;
     }
 
+    public boolean isMaxPosition(int maxPosition){
+        if (maxPosition == getPosition())
+            return true;
+        return false;
+    }
+
     private String getPositionGraphic() {
         String positionGraphic = "";
         for (int i = 0; i < position; i++)
