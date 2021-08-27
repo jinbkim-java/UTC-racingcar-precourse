@@ -23,7 +23,7 @@ public class PlayGame {
         try {
             System.out.println(view.ASK_CAR_NAMES);
             racingCars = new RacingCars(view.getUserInput());
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             setCarNames();
         }
@@ -35,15 +35,15 @@ public class PlayGame {
             String gameRound = view.getUserInput();
             validate(gameRound);
             this.gameRound = Integer.parseInt(gameRound);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             setGameRound();
         }
     }
 
-    private void validate(String gameRound){
+    private void validate(String gameRound) {
         Validate.validateNumber(gameRound);
-        if (Integer.parseInt(gameRound) < 1)
+        if (Integer.parseInt(gameRound) <= 0)
             throw new IllegalArgumentException(View.ONLY_NUMBER);
     }
 

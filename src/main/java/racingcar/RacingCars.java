@@ -16,7 +16,7 @@ public class RacingCars {
     public static final int CAR_MAX_SIZE = 5;
 
 
-    public RacingCars(String userInput){
+    public RacingCars(String userInput) {
         validate(userInput);
         cars = Stream.of(userInput.split(CAR_NAME_SEPARATOR))
                 .map(s -> s.trim())
@@ -24,24 +24,24 @@ public class RacingCars {
                 .collect(Collectors.toList());
     }
 
-    public void racing(){
-        for(int i=0; i<cars.size(); i++) {
+    public void racing() {
+        for (int i = 0; i < cars.size(); i++) {
             cars.get(i).move();
             System.out.println(cars.get(i));
         }
         System.out.println();
     }
 
-    public String getWinners(){
+    public String getWinners() {
         return cars.stream()
                 .filter(car -> car.isMaxPosition(getWinnersPosition()))
                 .map(car -> car.getName())
-                .collect(Collectors.joining(CAR_NAME_SEPARATOR+" "));
+                .collect(Collectors.joining(CAR_NAME_SEPARATOR + " "));
     }
 
-    private void validate(String userInput){
+    private void validate(String userInput) {
         String[] carNames = userInput.split(CAR_NAME_SEPARATOR);
-        for(int i=0; i<carNames.length; i++)
+        for (int i = 0; i < carNames.length; i++)
             carNames[i] = carNames[i].trim();
 
         if (Validate.carHasWrongSize(carNames))
@@ -52,11 +52,11 @@ public class RacingCars {
             throw new IllegalArgumentException(View.WRONG_COMMAS_COUNT);
     }
 
-    private int getWinnersPosition(){
+    private int getWinnersPosition() {
         List<Integer> list = new ArrayList<>();
-        for(int i=0; i<cars.size(); i++)
+        for (int i = 0; i < cars.size(); i++)
             list.add(cars.get(i).getPosition());
         Collections.sort(list);
-        return list.get(cars.size()-1);
+        return list.get(cars.size() - 1);
     }
 }

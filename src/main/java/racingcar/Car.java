@@ -32,7 +32,7 @@ public class Car {
         return name;
     }
 
-    public boolean isMaxPosition(int maxPosition){
+    public boolean isMaxPosition(int maxPosition) {
         if (maxPosition == getPosition())
             return true;
         return false;
